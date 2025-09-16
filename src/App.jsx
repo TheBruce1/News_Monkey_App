@@ -6,7 +6,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import Navbar from './components/Navbar.jsx'
 import News from './components/News.jsx'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { HashRouter, Route, Routes} from 'react-router-dom'
 import Login from './components/Login.jsx'
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <>
-    <BrowserRouter>
+    <HashRouter>
       <Navbar onSearch={setSearchTerm}/>
       <Routes>
         <Route exact path='/' element={<News key="general" apiKey={apiKey} pageSize={8} country='us' category='general' searchTerm={searchTerm}/>}/>
@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path='/technology' element={<News key="technology" apiKey={apiKey} pageSize={8} country='us' category='technology' searchTerm={searchTerm}/>}/>
       </Routes>
       {/* <Login onLogin={(credentials) => console.log(credentials)} /> */}
-    </BrowserRouter>
+    </HashRouter>
     </>
   )
 }

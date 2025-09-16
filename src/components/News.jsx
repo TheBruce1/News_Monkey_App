@@ -14,6 +14,7 @@ const News = (props) => {
 
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
+
   const fetchNews = async (pageNum = 1, concat = false) => {
     loadingBar.current && loadingBar.current.continuousStart()
     setLoading(true)
@@ -31,8 +32,9 @@ const News = (props) => {
       setArticles([]);
     }
     setLoading(false);
-    loadingBar.current && loadingBar.current.complete();  
+    loadingBar.current && loadingBar.current.complete();
   }
+
 
   useEffect(() => {
     document.title = `${capitalize(props.category)} - NewsMonkey`
@@ -41,8 +43,9 @@ const News = (props) => {
   }, [props.category, props.searchTerm])
 
   const fetchMoreData = async () => {
-    const nextPage = page + 1
-    await fetchNews(nextPage, true)
+    if (page < 5) { // Only fetch up to page 5
+      await fetchNews(page + 1, true);
+    }
   }
 
   return (

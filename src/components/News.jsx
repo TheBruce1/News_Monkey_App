@@ -25,14 +25,14 @@ const News = (props) => {
       const parsedData = await data.json()
       setArticles(concat ? articles.concat(parsedData.articles || []) : (parsedData.articles || []));
       setTotalResults(parsedData.totalResults || 0);
-      // setPage(pageNum);
+      setPage(pageNum);
       setLoading(false);
       loadingBar.current && loadingBar.current.complete();
     } catch (error) {
       setArticles([]);
-    }
-    setLoading(false);
+      setLoading(false);
     loadingBar.current && loadingBar.current.complete();
+    }
   }
 
 
